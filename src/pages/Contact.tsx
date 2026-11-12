@@ -68,7 +68,7 @@ export default function Contact() {
           </div>
         </div>
       ) : (
-        <form onSubmit={onSubmit} className="mt-10 flex flex-col gap-5">
+        <form onSubmit={onSubmit} className="mt-10 flex flex-col gap-5" noValidate={false}>
           <div className="grid gap-5 sm:grid-cols-2">
             <label className="stack gap-2">
               <span className="label">Name</span>
