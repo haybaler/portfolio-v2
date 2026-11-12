@@ -5,7 +5,7 @@ import Home from '@/pages/Home';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
 import CaseStudy from '@/pages/CaseStudy';
-import { WORK } from '@/lib/content';
+import { WORK } from '@/lib/work';
 import { useRoute } from '@/lib/router';
 
 const TITLES: Record<string, string> = {
