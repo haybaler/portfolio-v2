@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, Moon, Sun, X } from 'lucide-react';
 import { CONTACT_HREF } from '@/lib/content';
 import { go } from '@/lib/router';
 
@@ -9,23 +9,28 @@ const NAV = [
   { label: 'About', path: '/about' },
 ];
 
+function useTheme() {
+  const [dark, setDark] = useState(
+    () =>
+      window.matchMedia?.('(prefers-color-scheme: dark)').matches ??
+      false
+  );
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', dark);
+  }, [dark]);
+  return [dark, () => setDark((d) => !d)] as const;
+}
+
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const [dark, toggleTheme] = useTheme();
 
   const nav = (path: string) => {
     setOpen(false);
     if (path.startsWith('/#')) {
       const current = window.location.hash.slice(1) || '/';
       if (current === '/') {
-        const el = document.getElementById(path.slice(2));
-        el?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(path.slice(2))?.scrollIntoView({ behavior: 'smooth' });
         return;
       }
       go('/');
@@ -38,58 +43,71 @@ export default function Header() {
   };
 
   return (
-    <header
-      className={`sticky top-0 z-40 bg-ground/90 backdrop-blur transition-shadow ${
-        scrolled ? 'shadow-[0_1px_0_0_#e0e0e0]' : ''
-      }`}
-    >
-      <div className="wrap flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-40 bg-ground">
+      <div className="wrap flex min-h-14 items-center justify-between gap-2 py-2">
         <a
           href="#/"
-          className="text-sm font-semibold tracking-tight hover:text-action transition-colors"
+          className="name inline-flex min-h-11 items-center gap-2 text-base text-ink hover:underline"
           aria-label="Josh Haydon, home"
         >
+          <span className="mark" aria-hidden />
           Josh Haydon
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
+        <nav className="hidden items-center gap-6 md:flex" aria-label="Main">
           {NAV.map((item) => (
             <button
               key={item.path}
               onClick={() => nav(item.path)}
-              className="text-sm font-medium text-text-2 transition-colors hover:text-text"
+              className="text-sm text-ink-muted transition-colors hover:text-ink"
             >
               {item.label}
             </button>
           ))}
-          <a href={CONTACT_HREF} className="btn-primary !px-4 !py-2 text-xs">
+          <a href={CONTACT_HREF} className="btn btn-primary !min-h-9 !px-3.5 !py-1.5 text-sm">
             Get in Touch
           </a>
+          <button
+            onClick={toggleTheme}
+            aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+            className="p-2 text-ink-muted transition-colors hover:text-ink"
+          >
+            {dark ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
         </nav>
 
-        <button
-          className="p-2 md:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          <button
+            onClick={toggleTheme}
+            aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+            className="p-2 text-ink-muted"
+          >
+            {dark ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
+          <button
+            className="p-2"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {open && (
         <div className="border-t border-line bg-ground md:hidden">
-          <nav className="wrap flex flex-col gap-1 py-4" aria-label="Mobile">
+          <nav className="wrap stack py-4" aria-label="Mobile">
             {NAV.map((item) => (
               <button
                 key={item.path}
                 onClick={() => nav(item.path)}
-                className="py-2 text-left text-sm font-medium text-text-2"
+                className="min-h-11 text-left text-sm text-ink-muted"
               >
                 {item.label}
               </button>
             ))}
-            <a href={CONTACT_HREF} className="btn-primary mt-2">
+            <a href={CONTACT_HREF} className="btn btn-primary mt-1">
               Get in Touch
             </a>
           </nav>
