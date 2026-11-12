@@ -48,7 +48,7 @@ export const WORK: WorkItem[] = [
     slug: 'visitor-id',
     title: 'Know Who Is on Your Website',
     headline: 'Sales Hears About Buyers Who Never Fill Out a Form',
- summary:
+    summary:
       'AI matches each website visit to a company, scores fit and intent, logs it in the CRM with its source and alerts the rep when the account is ready.',
     capability: 'Revenue Systems',
     tags: ['Sales', 'Marketing'],
@@ -136,7 +136,7 @@ export const WORK: WorkItem[] = [
     role: 'Product, AI workflow, brand rules',
     builtWith: ['HubSpot', 'Pardot', 'Claude Code', 'Codex', 'Gemini CLI'],
     problem:
- 'Every campaign started with a blank page and a style guide nobody read, so the first review was about formatting, not substance.',
+      'Every campaign started with a blank page and a style guide nobody read, so the first review was about formatting, not substance.',
     outcome:
       'Drafts that arrive inside the brand system — voice, colors, typography and claims — checked in code before a human sees them.',
     approach:
@@ -158,7 +158,7 @@ export const WORK: WorkItem[] = [
     problem:
       'A site-wide rename meant hunting through every page by hand, with the ones missed found by customers weeks later.',
     outcome:
-      'Every mention found and drafted in one pass, published only after approval, with a live link to compare.',
+      'Every mention found and drafted in one pass, published only after approval, with a live link to check.',
     approach:
       'Claude queries the CMS through an MCP connection, drafts the changes across every affected page, and publishes after I approve. Sample content only on this example.',
     demo: true,
