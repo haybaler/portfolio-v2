@@ -41,9 +41,33 @@ export type WorkItem = {
   approach: string;
   featured?: boolean;
   builtOn?: string;
+  /** The case study has a live interactive example (src/pages/work/<slug>). */
+  demo?: boolean;
+  /** Every tool or data source the case study connects, shown as "Works With" on the case study page. */
+  worksWith?: string[];
+  /** The team it was built for, shown in the label above the case study's headline. */
+  area?: 'Commercial Operations' | 'Sales' | 'Marketing';
 };
 
-export const COLLABORATIONS = [
+/** "Salesforce and HubSpot", or just "HubSpot" when one system does both jobs. */
+export const both = (crm: string, map: string, joiner = ' and ') => (crm === map ? crm : `${crm}${joiner}${map}`);
+
+/** Substitutes the stack names into text: {crm} → the CRM's name, {map} → the marketing platform's short name. */
+export const fill = (text: string, crm: string, map: string) =>
+  text.split('{crm} and {map}').join(both(crm, map)).split('{crm}').join(crm).split('{map}').join(map);
+
+export type Collaboration = {
+  slug: string;
+  client: string;
+  clientUrl: string;
+  headline: string;
+  summary: string;
+  role: string;
+  credits: { name: string; url: string; label: string }[];
+  tags: string[];
+};
+
+export const COLLABORATIONS: Collaboration[] = [
   {
     slug: 'helix',
     client: 'Helix',
@@ -86,3 +110,6 @@ export const COLLABORATIONS = [
     tags: ['Brand', 'Commerce', 'Web'],
   },
 ];
+
+/** Recent AI-built examples, added over time. */
+export const AI_EXAMPLES: { title: string; blurb: string }[] = [];
