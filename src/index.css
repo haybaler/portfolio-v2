@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ground text-text font-sans antialiased;
+  }
+  ::selection {
+    @apply bg-action-soft;
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-wrap px-6 md:px-10;
+  }
+  .eyebrow {
+    @apply text-eyebrow font-medium uppercase text-text-3;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-action px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 bg-card-3 px-5 py-3 text-sm font-semibold text-text transition-colors hover:bg-card-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action;
+  }
+  .tag {
+    @apply inline-block bg-card-2 px-2 py-1 text-xs font-medium text-text-2;
+  }
+  .card {
+    @apply bg-card p-6 md:p-8;
+  }
+  .hairline {
+    @apply border-line;
+  }
+}
+
+@layer utilities {
+  .fade-up {
+    animation: fade-up 0.6s cubic-bezier(0.2, 0, 0.4, 1) both;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
