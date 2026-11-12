@@ -1,66 +1,122 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* The logo mark: seven ink dots and one signal-blue dot, as an SVG mask. */
+:root {
+  --mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Cpath fill-rule='evenodd' d='M5 0H43a5 5 0 0 1 5 5V27a5 5 0 0 1 -5 5H5a5 5 0 0 1 -5 -5V5a5 5 0 0 1 5 -5ZM5.25 10.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0ZM15.25 10.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0ZM25.25 10.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0ZM5.25 21.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0ZM15.25 21.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0ZM25.25 21.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0ZM35.25 21.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0Z' fill='%23000'/%3E%3C/svg%3E");
+}
+
+/* IBM Design Language tokens: light and dark. */
+:root {
+  --ground: #ffffff;
+  --card: #f4f4f4;
+  --card-2: #e8e8e8;
+  --card-3: #e0e0e0;
+  --card-4: #d1d1d1;
+  --line: #e0e0e0;
+  --line-2: #c6c6c6;
+  --ink: #161616;
+  --ink-2: #393939;
+  --ink-muted: #525252;
+  --ink-faint: #8d8d8d;
+  --signal: #0f62fe;
+  --signal-text: #0f62fe;
+  --signal-soft: #edf5ff;
+  --positive: #198038;
+  --negative: #da1e28;
+  color-scheme: light;
+}
+
+:root.dark {
+  --ground: #161616;
+  --card: #262626;
+  --card-2: #333333;
+  --card-3: #393939;
+  --card-4: #474747;
+  --line: #393939;
+  --line-2: #525252;
+  --ink: #f4f4f4;
+  --ink-2: #c6c6c6;
+  --ink-muted: #c6c6c6;
+  --ink-faint: #6f6f6f;
+  --signal: #0f62fe;
+  --signal-text: #78a9ff;
+  --signal-soft: #001d6c;
+  --positive: #42be65;
+  --negative: #ff8389;
+  color-scheme: dark;
+}
 
 @layer base {
   html {
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-ground text-text font-sans antialiased;
+    @apply bg-ground text-ink font-sans antialiased;
   }
   ::selection {
-    @apply bg-action-soft;
+    background: #d0e2ff;
+  }
+  :root.dark ::selection {
+    background: #002d9c;
   }
 }
 
 @layer components {
   .wrap {
-    @apply mx-auto w-full max-w-wrap px-6 md:px-10;
+    @apply mx-auto w-full max-w-wrap px-4;
   }
-  .eyebrow {
-    @apply text-eyebrow font-medium uppercase text-text-3;
+  .mark {
+    width: 27px;
+    height: 18px;
+    flex: none;
+    background-color: var(--ink);
+    -webkit-mask: var(--mark) no-repeat center / contain;
+    mask: var(--mark) no-repeat center / contain;
+  }
+  .label {
+    @apply font-mono text-xs text-ink-muted;
+  }
+  .stack {
+    @apply grid gap-4;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 border border-line bg-card-3 px-[1.35em] py-[.78em] text-base leading-none text-ink transition-colors duration-150 hover:bg-card-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal;
+    min-height: 44px;
   }
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-action px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action;
-  }
-  .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 bg-card-3 px-5 py-3 text-sm font-semibold text-text transition-colors hover:bg-card-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action;
+    @apply border-ink bg-ink text-ground hover:bg-ink-2 hover:border-ink-2;
   }
   .tag {
-    @apply inline-block bg-card-2 px-2 py-1 text-xs font-medium text-text-2;
+    @apply inline-block bg-signal-soft px-[9px] py-[3px] text-xs text-signal-text;
   }
   .card {
-    @apply bg-card p-6 md:p-8;
+    @apply bg-card p-5;
   }
-  .hairline {
-    @apply border-line;
+  .work-card {
+    @apply grid content-start gap-2.5 bg-card p-[22px] transition-colors duration-150 hover:bg-card-2;
   }
-}
-
-@layer utilities {
-  .fade-up {
-    animation: fade-up 0.6s cubic-bezier(0.2, 0, 0.4, 1) both;
+  .lede {
+    @apply text-ink-muted;
+    font-size: clamp(1.08rem, 2vw, 1.28rem);
+    line-height: 1.4;
+    max-width: 42ch;
   }
-}
-
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
+  .display {
+    @apply font-light tracking-normal;
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    line-height: 1.17;
+    max-width: 22ch;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .teaser-link {
+    @apply text-signal-text hover:underline;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-up {
-    animation: none;
-  }
   html {
     scroll-behavior: auto;
   }
