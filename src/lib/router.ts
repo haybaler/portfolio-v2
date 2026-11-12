@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-/** Minimal hash router: returns the current path like "//work/board-slides". */
+/** Minimal hash router: returns the current path like "/work/board-slides". */
 export function useRoute(): string {
   const [route, setRoute] = useState(() => window.location.hash.slice(1) || '/');
   useEffect(() => {
