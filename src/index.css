@@ -4,12 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* IBM Design Language tokens: light and dark. */
 /* The logo mark: seven ink dots and one signal-blue dot, as an SVG mask. */
 :root {
   --mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Cpath fill-rule='evenodd' d='M5 0H43a5 5 0 0 1 5 5V27a5 5 0 0 1 -5 5H5a5 5 0 0 1 -5 -5V5a5 5 0 0 1 5 -5ZM5.25 10.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0ZM15.25 10.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0ZM25.25 10.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0ZM5.25 21.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0ZM15.25 21.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0ZM25.25 21.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0ZM35.25 21.50a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0Z' fill='%23000'/%3E%3C/svg%3E");
 }
 
-/* IBM Design Language tokens: light and dark. */
 :root {
   --ground: #ffffff;
   --card: #f4f4f4;
@@ -76,8 +76,7 @@
     background-color: var(--ink);
     -webkit-mask: var(--mark) no-repeat center / contain;
     mask: var(--mark) no-repeat center / contain;
-  }
-  .label {
+  }  .label {
     @apply font-mono text-xs text-ink-muted;
   }
   .stack {
