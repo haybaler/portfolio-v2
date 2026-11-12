@@ -1,13 +1,17 @@
 import { ArrowRight } from 'lucide-react';
 import type { WorkItem } from '@/lib/content';
 import { go } from '@/lib/router';
+import Thumb from '@/components/Thumb';
 
 export function WorkCard({ item, featured = false }: { item: WorkItem; featured?: boolean }) {
   return (
     <button
       onClick={() => go(`/work/${item.slug}`)}
-      className="work-card text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal"
+      className={`work-card text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal ${
+        featured ? 'grid-rows-[auto_auto_1fr_auto]' : 'grid-rows-[auto_auto_1fr_auto]'
+      }`}
     >
+      {item.demo && <Thumb slug={item.slug} large={featured} />}
       <div className="flex flex-wrap gap-1.5">
         <span className="tag">{item.capability}</span>
         {item.tags.slice(0, 1).map((t) => (

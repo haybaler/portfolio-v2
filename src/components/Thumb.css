@@ -1,0 +1,41 @@
+/* Case-study card previews (Thumb.tsx). Tokens only, flat and square like the rest of the site.
+   Sizes are in drawing units: the compact drawing is 120 wide and never shown under 300px, the wide one 240 and
+   never under 600px, so 3.6 units is at least 9px on screen. */
+.work-card { container-type: inline-size; }
+.work-card .thumb.thumb-sm,
+.work-card .thumb.thumb-lg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 10px;
+  background: var(--window-body);
+}
+/* The cards' older thumbnail rules set other shapes at several widths; these two shapes must win everywhere. */
+.work-card .thumb.thumb-sm { aspect-ratio: 2 / 1 !important; }
+.work-card .thumb.thumb-lg { aspect-ratio: 3 / 1 !important; display: none; }
+@container (min-width: 600px) {
+  .work-card .thumb.thumb-sm:has(+ .thumb-lg) { display: none; }
+  .work-card .thumb.thumb-lg { display: block; }
+}
+/* Under 290px the small type would fall below 9px, so the card keeps only the number and its bars. */
+@container (max-width: 289px) {
+  .thumb-sm .tp-meta, .thumb-sm .tp-label, .thumb-sm .tp-note, .thumb-sm .tp-row { display: none; }
+}
+
+.tp-window { fill: var(--window-body); }
+.tp-chrome { fill: var(--window-chrome); }
+.tp-chrome-dot { fill: var(--line-control); }
+.tp-panel { fill: var(--card); }
+.tp-track { fill: var(--chart-rest); }
+.tp-chart { fill: var(--chart-1); }
+.tp-blue { fill: var(--chart-2); }
+
+.tp-meta { font: 400 3.6px var(--font-mono); fill: var(--ink-muted); }
+.tp-label { font: 400 3.8px var(--font-mono); fill: var(--ink-muted); }
+.tp-value { font: 300 15px var(--font-sans); fill: var(--ink); }
+.tp-value-lg { font-size: 19px; }
+.tp-note { font: 400 4.2px var(--font-sans); fill: var(--ink-muted); }
+.tp-row { font: 400 4px var(--font-sans); fill: var(--ink); }
+.tp-fig { font: 400 3.8px var(--font-mono); fill: var(--ink-muted); }
+.tp-good { fill: var(--positive); }
+.tp-bad { fill: var(--negative); }
