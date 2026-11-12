@@ -10,24 +10,21 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="border-b border-line">
-        <div className="wrap py-20 md:py-28">
-          <p className="eyebrow fade-up">Josh Haydon · AI Engineer</p>
-          <h1 className="fade-up mt-4 max-w-3xl text-4xl font-semibold leading-[1.15] tracking-tight md:text-6xl">
-            From Business Problem to Working AI Product
-          </h1>
-          <p className="fade-up mt-6 max-w-2xl text-lg leading-relaxed text-text-2">
+      {/* Hero — centered, 300-weight display, the IBM build */}
+      <section className="hero py-12 md:py-20">
+        <div className="wrap stack justify-items-center text-center">
+          <p className="label">Josh Haydon · AI Engineer</p>
+          <h1 className="display mx-auto">From Business Problem to Working AI Product</h1>
+          <p className="lede mx-auto max-w-[48ch]">
             I build AI-powered products, dashboards, and internal tools for sales, marketing, and
             operations. My strength is taking ambiguous problems, messy data and manual workflows
             through to useful, working software.
           </p>
-          <div className="fade-up mt-8 flex flex-wrap gap-3">
-            <button onClick={() => go('/#work')} className="btn-primary">
+          <div className="flex flex-wrap justify-center gap-3">
+            <button onClick={() => go('/#work')} className="btn btn-primary">
               See the Work
-              <ArrowRight size={16} />
             </button>
-            <a href="#/about" className="btn-secondary">
+            <a href="#/about" className="btn">
               About Me
             </a>
           </div>
@@ -35,14 +32,19 @@ export default function Home() {
       </section>
 
       {/* What I Build */}
-      <section className="border-b border-line bg-card">
-        <div className="wrap py-16 md:py-20">
-          <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">What I Build</h2>
-          <div className="mt-8 grid gap-px bg-line-2 sm:grid-cols-2 lg:grid-cols-4">
+      <section id="what-i-build" className="section py-14 md:py-20">
+        <div className="wrap">
+          <div className="stack mx-auto mb-10 max-w-[80ch] justify-items-center text-center">
+            <p className="label">What I Build</p>
+            <h2 className="text-[clamp(1.5rem,3vw,2rem)] font-normal leading-tight">
+              AI Products, Data Products, Revenue Systems and Automation
+            </h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {CAPABILITIES.map((c) => (
-              <div key={c.name} className="bg-card p-6">
+              <div key={c.name} className="card stack gap-2">
                 <h3 className="text-sm font-semibold">{c.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-text-2">{c.blurb}</p>
+                <p className="text-sm leading-relaxed text-ink-muted">{c.blurb}</p>
               </div>
             ))}
           </div>
@@ -50,26 +52,22 @@ export default function Home() {
       </section>
 
       {/* Work */}
-      <section id="work" className="border-b border-line scroll-mt-16">
-        <div className="wrap py-16 md:py-20">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="eyebrow">Case Studies</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
-                The Work, by What It Does
-              </h2>
-            </div>
-            <p className="max-w-sm text-sm text-text-2">
-              Organized around capabilities. Department tags stay on the cards.
-            </p>
+      <section id="work" className="section py-14 md:py-20 scroll-mt-16">
+        <div className="wrap">
+          <div className="mb-10 flex flex-wrap items-baseline justify-between gap-2 md:gap-4">
+            <h2 className="text-[clamp(1.5rem,3vw,2rem)] font-normal leading-tight">Case Studies</h2>
+            <p className="text-sm text-ink-muted">Organized by capability. Departments stay as tags.</p>
           </div>
 
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <p className="label mb-4">Featured</p>
+          <div className="mb-8 grid gap-4 md:grid-cols-2">
             {featured.map((item) => (
-              <WorkCard key={item.slug} item={item} />
+              <WorkCard key={item.slug} item={item} featured />
             ))}
           </div>
-          <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+
+          <p className="label mb-4">More Case Studies</p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((item) => (
               <WorkCard key={item.slug} item={item} />
             ))}
@@ -78,25 +76,23 @@ export default function Home() {
       </section>
 
       {/* Collaborations */}
-      <section id="collaborations" className="border-b border-line bg-card scroll-mt-16">
-        <div className="wrap py-16 md:py-20">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="eyebrow">Selected Collaborations</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
-                Brand and Digital Rebuilds, Directed End to End
-              </h2>
-            </div>
+      <section id="collaborations" className="section bg-card py-14 md:py-20 scroll-mt-16">
+        <div className="wrap">
+          <div className="stack mx-auto mb-10 max-w-[80ch] justify-items-center text-center">
+            <p className="label">Selected Collaborations</p>
+            <h2 className="text-[clamp(1.5rem,3vw,2rem)] font-normal leading-tight">
+              Brand and Digital Rebuilds, Directed End to End
+            </h2>
+            <p className="lede mx-auto max-w-[56ch]">
+              A large part of my remit at every organization was rebuilding the marketing
+              infrastructure: brand identity, segments, copywriting and user flows, then directing
+              designers and developers to ship the digital experience. I now do much of this
+              directly with AI. Project descriptions adapted with permission.
+            </p>
           </div>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-text-2">
-            A large part of my remit at every organization was rebuilding the marketing
-            infrastructure: brand identity, segments, copywriting and user flows, then directing
-            designers and developers to ship the digital experience. I now do much of this directly
-            with AI. Project descriptions adapted with permission.
-          </p>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-3">
             {COLLABORATIONS.map((c) => (
-              <article key={c.slug} className="flex flex-col gap-4 bg-ground p-6 md:p-8">
+              <article key={c.slug} className="stack gap-4 bg-ground p-5 md:p-6">
                 <div className="flex flex-wrap gap-1.5">
                   {c.tags.map((t) => (
                     <span key={t} className="tag">
@@ -104,17 +100,15 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-widest text-text-3">
-                    {c.client}
-                  </p>
-                  <h3 className="mt-1 text-lg font-semibold leading-snug">{c.headline}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-text-2">{c.summary}</p>
+                <div className="stack gap-2">
+                  <p className="label">{c.client}</p>
+                  <h3 className="text-lg font-normal leading-snug">{c.headline}</h3>
+                  <p className="text-sm leading-relaxed text-ink-muted">{c.summary}</p>
                 </div>
-                <div className="mt-auto flex flex-col gap-2 text-xs text-text-2">
+                <div className="stack mt-auto gap-2 text-sm text-ink-muted">
                   <p className="leading-relaxed">{c.role}</p>
                   <p className="flex flex-wrap items-center gap-x-1 gap-y-1">
-                    <span className="text-text-3">Built with</span>
+                    <span className="text-ink-faint">Built with</span>
                     {c.credits.map((credit, i) => (
                       <span key={credit.name} className="inline-flex items-center gap-1">
                         {i > 0 && <span aria-hidden>·</span>}
@@ -122,11 +116,11 @@ export default function Home() {
                           href={credit.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-medium text-text hover:text-action transition-colors"
+                          className="font-normal text-ink hover:text-signal-text"
                         >
                           {credit.name}
                         </a>
-                        <ArrowUpRight size={11} className="text-text-3" aria-hidden />
+                        <ArrowUpRight size={11} className="text-ink-faint" aria-hidden />
                       </span>
                     ))}
                   </p>
@@ -137,19 +131,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact strip */}
-      <section className="bg-ground">
-        <div className="wrap flex flex-col items-start justify-between gap-6 py-16 md:flex-row md:items-center md:py-20">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Get in Touch</h2>
-            <p className="mt-2 max-w-md text-sm leading-relaxed text-text-2">
-              Have a business problem that should be a working product? Tell me about it.
-            </p>
-          </div>
-          <button onClick={() => go('/contact')} className="btn-primary">
+      {/* Contact strip — centered, like the original's ContactBlock */}
+      <section className="contact mt-14 md:mt-24">
+        <div className="wrap stack items-center justify-items-center py-14 text-center md:py-20">
+          <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-light leading-[1.1]">
             Get in Touch
-            <ArrowRight size={16} />
-          </button>
+          </h2>
+          <p className="lede mx-auto max-w-[48ch]">
+            Have a business problem that should be a working product? Tell me about it.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <button onClick={() => go('/contact')} className="btn btn-primary">
+              Get in Touch
+              <ArrowRight size={15} />
+            </button>
+          </div>
         </div>
       </section>
     </>

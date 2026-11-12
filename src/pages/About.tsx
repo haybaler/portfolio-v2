@@ -5,17 +5,15 @@ import { go } from '@/lib/router';
 export default function About() {
   return (
     <>
-      <section className="border-b border-line">
-        <div className="wrap py-16 md:py-24">
-          <p className="eyebrow">About</p>
-          <h1 className="mt-3 max-w-3xl text-3xl font-semibold leading-tight tracking-tight md:text-5xl md:leading-[1.1]">
-            AI Engineer with Deep Commercial Context
-          </h1>
+      <section className="py-12 md:py-20">
+        <div className="wrap stack mx-auto max-w-[64ch] justify-items-center text-center">
+          <p className="label">About</p>
+          <h1 className="display mx-auto">AI Engineer with Deep Commercial Context</h1>
         </div>
       </section>
 
-      <div className="wrap max-w-3xl py-14">
-        <div className="flex flex-col gap-6 text-base leading-[1.7] text-text-2">
+      <div className="wrap stack mx-auto max-w-[64ch] pb-16 text-center">
+        <div className="stack gap-6 text-base leading-[1.6] text-ink-muted">
           <p>
             I lead commercial and product work in life sciences, and I build with AI. For years my
             remit was the same at every organization: rebuild the entire marketing infrastructure —
@@ -36,20 +34,20 @@ export default function About() {
           </p>
         </div>
 
-        <div className="mt-12 flex flex-wrap gap-3">
-          <button onClick={() => go('/#work')} className="btn-primary">
+        <div className="flex flex-wrap justify-center gap-3">
+          <button onClick={() => go('/#work')} className="btn btn-primary">
             See the Work
-            <ArrowRight size={16} />
+            <ArrowRight size={15} />
           </button>
           <a
             href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary"
+            className="btn"
           >
-            <Linkedin size={15} />
+            <Linkedin size={14} />
             LinkedIn
-            <ArrowUpRight size={13} />
+            <ArrowUpRight size={12} />
           </a>
         </div>
       </div>
