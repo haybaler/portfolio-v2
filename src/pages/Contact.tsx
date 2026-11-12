@@ -39,29 +39,29 @@ export default function Contact() {
   }
 
   const field =
-    'w-full border border-line-control bg-ground px-4 py-3 text-sm text-text placeholder:text-text-3 focus:border-action focus:outline-none';
+    'w-full border border-line-2 bg-ground px-4 py-3 text-sm text-ink placeholder:text-ink-faint focus:border-ink focus:outline-none';
 
   return (
-    <section className="wrap max-w-2xl py-16 md:py-24">
-      <p className="eyebrow">Get in Touch</p>
-      <h1 className="mt-3 text-3xl font-semibold leading-tight tracking-tight md:text-5xl md:leading-[1.1]">
+    <section className="wrap max-w-2xl py-14 md:py-20">
+      <p className="label">Get in Touch</p>
+      <h1 className="mt-2 max-w-[22ch] text-[clamp(2rem,5vw,3.25rem)] font-light leading-[1.15]">
         Have a Business Problem That Should Be a Working Product?
       </h1>
-      <p className="mt-5 text-base leading-relaxed text-text-2">
+      <p className="lede mt-4 max-w-[48ch]">
         Tell me about it. I read every message and reply to the ones with a real problem in them.
       </p>
 
       {status === 'sent' ? (
-        <div className="mt-10 border-l-2 border-ok bg-card p-6">
+        <div className="mt-10 border-l-2 border-positive bg-card p-6">
           <div className="flex items-start gap-3">
-            <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-ok" />
-            <div>
+            <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-positive" />
+            <div className="stack gap-1">
               <h2 className="text-base font-semibold">Message Sent</h2>
-              <p className="mt-1 text-sm leading-relaxed text-text-2">
+              <p className="text-sm leading-relaxed text-ink-muted">
                 Thank you. Your message is saved and I will reply to the email you gave me. If it
                 is urgent, you can also reach me directly.
               </p>
-              <a href={CONTACT_HREF} className="btn-secondary mt-4 !py-2 text-xs">
+              <a href={CONTACT_HREF} className="btn mt-3 !min-h-9 w-fit !py-1.5 text-sm">
                 Email Me Directly
               </a>
             </div>
@@ -70,16 +70,12 @@ export default function Contact() {
       ) : (
         <form onSubmit={onSubmit} className="mt-10 flex flex-col gap-5">
           <div className="grid gap-5 sm:grid-cols-2">
-            <label className="flex flex-col gap-2">
-              <span className="text-xs font-semibold uppercase tracking-widest text-text-2">
-                Name
-              </span>
+            <label className="stack gap-2">
+              <span className="label">Name</span>
               <input name="name" required maxLength={120} className={field} placeholder="Your name" />
             </label>
-            <label className="flex flex-col gap-2">
-              <span className="text-xs font-semibold uppercase tracking-widest text-text-2">
-                Email
-              </span>
+            <label className="stack gap-2">
+              <span className="label">Email</span>
               <input
                 name="email"
                 type="email"
@@ -90,16 +86,12 @@ export default function Contact() {
               />
             </label>
           </div>
-          <label className="flex flex-col gap-2">
-            <span className="text-xs font-semibold uppercase tracking-widest text-text-2">
-              Company <span className="normal-case text-text-3">(Optional)</span>
-            </span>
+          <label className="stack gap-2">
+            <span className="label">Company (Optional)</span>
             <input name="company" maxLength={160} className={field} placeholder="Company name" />
           </label>
-          <label className="flex flex-col gap-2">
-            <span className="text-xs font-semibold uppercase tracking-widest text-text-2">
-              Message
-            </span>
+          <label className="stack gap-2">
+            <span className="label">Message</span>
             <textarea
               name="message"
               required
@@ -111,25 +103,25 @@ export default function Contact() {
           </label>
 
           {status === 'error' && (
-            <p role="alert" className="border-l-2 border-error bg-card px-4 py-3 text-sm text-text">
+            <p role="alert" className="border-l-2 border-negative bg-card px-4 py-3 text-sm text-ink">
               {errorMsg}
             </p>
           )}
 
           <div className="flex flex-wrap items-center gap-4">
-            <button type="submit" disabled={status === 'sending'} className="btn-primary disabled:opacity-60">
+            <button type="submit" disabled={status === 'sending'} className="btn btn-primary w-fit disabled:opacity-60">
               <Send size={15} />
               {status === 'sending' ? 'Sending…' : 'Send Message'}
             </button>
-            <span className="text-xs text-text-3">Or write directly:</span>
-            <a href={CONTACT_HREF} className="text-xs font-medium text-action hover:underline">
+            <span className="text-xs text-ink-faint">Or write directly:</span>
+            <a href={CONTACT_HREF} className="font-mono text-xs text-ink hover:text-signal-text">
               {CONTACT_EMAIL}
             </a>
             <a
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs font-medium text-text-2 transition-colors hover:text-action"
+              className="inline-flex items-center gap-1 text-xs font-medium text-ink-muted transition-colors hover:text-signal-text"
             >
               <Linkedin size={13} />
               LinkedIn

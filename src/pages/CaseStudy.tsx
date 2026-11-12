@@ -6,9 +6,9 @@ export default function CaseStudy({ slug }: { slug: string }) {
   const item = WORK.find((w) => w.slug === slug);
   if (!item) {
     return (
-      <div className="wrap py-24">
-        <p className="text-text-2">That case study does not exist.</p>
-        <button onClick={() => go('/')} className="btn-primary mt-6">
+      <div className="wrap stack py-24">
+        <p className="text-ink-muted">That case study does not exist.</p>
+        <button onClick={() => go('/')} className="btn btn-primary w-fit">
           Back to the Work
         </button>
       </div>
@@ -23,80 +23,76 @@ export default function CaseStudy({ slug }: { slug: string }) {
 
   return (
     <article>
-      <div className="wrap pt-10 md:pt-14">
+      <div className="wrap pt-8 md:pt-12">
         <button
           onClick={() => go('/#work')}
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-text-2 transition-colors hover:text-text"
+          className="inline-flex items-center gap-1.5 text-sm text-ink-muted transition-colors hover:text-ink"
         >
           <ArrowLeft size={15} />
           Back to the Work
         </button>
       </div>
 
-      <header className="wrap pt-10 pb-12 md:pt-14">
+      <header className="wrap stack pt-8 pb-12 md:pt-12">
         <div className="flex flex-wrap gap-1.5">
-          <span className="tag !bg-action-soft !text-action">{item.capability}</span>
+          <span className="tag">{item.capability}</span>
           {item.tags.map((t) => (
-            <span key={t} className="tag">
+            <span key={t} className="tag !bg-card-3 !text-ink-muted">
               {t}
             </span>
           ))}
         </div>
-        <p className="eyebrow mt-6">{item.title}</p>
-        <h1 className="mt-3 max-w-3xl text-3xl font-semibold leading-tight tracking-tight md:text-5xl md:leading-[1.1]">
+        <p className="label">{item.title}</p>
+        <h1 className="max-w-[22ch] text-[clamp(2rem,5vw,3.25rem)] font-light leading-[1.15]">
           {item.headline}
         </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-text-2">{item.summary}</p>
+        <p className="lede max-w-[48ch]">{item.summary}</p>
       </header>
 
       <div className="border-t border-line bg-card">
         <div className="wrap grid gap-px bg-line py-px md:grid-cols-3">
-          <div className="bg-card px-0 py-6 md:pr-8">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-text-3">My Role</h2>
+          <div className="bg-card py-6 md:pr-8">
+            <p className="label">My Role</p>
             <p className="mt-2 text-sm leading-relaxed">{item.role}</p>
           </div>
           <div className="bg-card py-6 md:px-8">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-text-3">
-              Built With
-            </h2>
+            <p className="label">Built With</p>
             <p className="mt-2 flex flex-wrap gap-1.5">
               {item.builtWith.map((tool) => (
-                <span key={tool} className="tag !bg-card-2">
+                <span key={tool} className="tag !bg-card-2 !text-ink-muted">
                   {tool}
                 </span>
               ))}
             </p>
           </div>
           <div className="bg-card py-6 md:pl-8">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-text-3">
-              The Data
-            </h2>
+            <p className="label">The Data</p>
             <p className="mt-2 text-sm leading-relaxed">Made-up data, invented company names.</p>
           </div>
         </div>
       </div>
 
-      <div className="wrap max-w-3xl py-14 md:py-18">
-        <section>
-          <h2 className="text-xl font-semibold tracking-tight md:text-2xl">The Problem</h2>
-          <p className="mt-4 text-base leading-[1.6] text-text-2">{item.problem}</p>
+      <div className="wrap max-w-[68ch] py-12 md:py-16">
+        <section className="stack">
+          <h2 className="text-xl font-normal">The Problem</h2>
+          <p className="text-base leading-[1.5] text-ink-muted">{item.problem}</p>
         </section>
-        <section className="mt-12">
-          <h2 className="text-xl font-semibold tracking-tight md:text-2xl">What I Built</h2>
-          <p className="mt-4 text-base leading-[1.6] text-text-2">{item.approach}</p>
+        <section className="stack mt-10">
+          <h2 className="text-xl font-normal">What I Built</h2>
+          <p className="text-base leading-[1.5] text-ink-muted">{item.approach}</p>
         </section>
-        <section className="mt-12">
-          <h2 className="text-xl font-semibold tracking-tight md:text-2xl">What It Does</h2>
-          <p className="mt-4 text-base leading-[1.6] text-text-2">{item.outcome}</p>
+        <section className="stack mt-10">
+          <h2 className="text-xl font-normal">What It Does</h2>
+          <p className="text-base leading-[1.5] text-ink-muted">{item.outcome}</p>
         </section>
 
         {item.builtOn && (
-          <section className="mt-12 border-l-2 border-action pl-6">
-            <p className="text-sm text-text-2">
+          <section className="mt-10 border-t border-line-2 pt-4">
+            <p className="text-sm text-ink-muted">
               Built on{' '}
               <button
                 onClick={() => go(`/work/${item.builtOn}`)}
-                className="font-semibold text-action hover:underline"
+                className="text-signal-text hover:underline"
               >
                 {WORK.find((w) => w.slug === item.builtOn)?.headline}
               </button>
@@ -107,15 +103,15 @@ export default function CaseStudy({ slug }: { slug: string }) {
       </div>
 
       {next && (
-        <div className="border-t border-line bg-card">
-          <div className="wrap flex items-center justify-between gap-4 py-10">
+        <div className="border-t border-line-2">
+          <div className="wrap flex flex-wrap items-center justify-between gap-4 py-8">
             <div>
-              <p className="eyebrow">Next Case Study</p>
-              <p className="mt-1 text-base font-semibold">{next.headline}</p>
+              <p className="label">Next Case Study</p>
+              <p className="mt-1 text-[1.375rem] font-normal">{next.headline}</p>
             </div>
-            <button onClick={() => go(`/work/${next.slug}`)} className="btn-secondary shrink-0">
+            <button onClick={() => go(`/work/${next.slug}`)} className="btn shrink-0">
               Read It
-              <ArrowRight size={15} />
+              <ArrowRight size={14} />
             </button>
           </div>
         </div>
