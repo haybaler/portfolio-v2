@@ -130,7 +130,7 @@ export default function SalesDashboard() {
                 <tr key={r.label}>
                   <th scope="row">{r.label}</th>
                   <td>{money(r.goal)}</td>
-                  <td>{money(r.planToDate)}
+                  <td>{money(r.planToDate)}</td>
                   <td>{money(r.actual)}</td>
                   <td><StatusPill value={`${r.pctToPlan}%`} status={planStatus(r.pctToPlan)} /></td>
                 </tr>

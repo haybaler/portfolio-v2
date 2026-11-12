@@ -62,7 +62,7 @@ export default function BusinessContextEngine() {
     >
       <div className="bce">
         <section className="bce-ask" aria-labelledby="ask-title">
-          <h3 id="ask-title">Ask the Agent</h three>
+          <h3 id="ask-title">Ask the Agent</h3>
           <div className="erp-questions">
             {QUESTIONS.map((x) => (
               <button key={x.id} type="button" className={`erp-q ${x.id === q.id ? "on" : x.id === "dark" ? "nudge" : ""}`} aria-pressed={x.id === q.id} onClick={() => setQid(x.id)}>
@@ -152,7 +152,7 @@ export default function BusinessContextEngine() {
                 </>
               ) : (
                 "Pick a source to trace where its data goes."
-              )} {""}
+              )}{" "}
               <button
                 type="button"
                 className="linkbtn"
